@@ -26,6 +26,11 @@ typedef struct{
   ListHead info;
 } ListListItem;
 
+void ListListItem_destroy(struct ListItem* item){
+  printf("destroying!\n");
+  ListListItem* l_item = (ListListItem*) item;
+  List_destroy(l_item->info);
+}
 void ListListiItem_print(struct ListItem* item){
   printf("[LIST] {\n");
   ListListItem* aux = (ListListItem*) item;
@@ -35,7 +40,7 @@ void ListListiItem_print(struct ListItem* item){
 
 ListItemOps list_list_ops={
   .print_fn = ListListiItem_print,
-  .dtor_fn = 0
+  .dtor_fn = ListListItem_destroy
 };
 
 typedef struct {
